@@ -20,7 +20,7 @@ public class Main {
         System.out.println(celularComSwitch.toString());
 
         Celular celularComMap = getCelularComMap(idCelular, identificador);
-        System.out.println(celularComSwitch.toString());
+        System.out.println(celularComSwitch);
 
 
     }
