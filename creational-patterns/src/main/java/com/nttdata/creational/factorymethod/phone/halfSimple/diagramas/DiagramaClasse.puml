@@ -1,0 +1,82 @@
+@startuml
+note as N1
+  <size:16><b>Factory Method (Half Simple)
+
+end note
+
+'title Factory Method
+object Cliente
+
+interface CelularFatory {
+    +Celular criarCelular();
+}
+
+class IphoneFactory {
+    +Celular criarCelular();
+}
+
+class MotorolaFactory {
+    +Celular criarCelular();
+}
+
+class SamsungFactory {
+    +Celular criarCelular();
+}
+
+class Celular {
+    # long id;
+    # String nome;
+    # String sistemaOperacional;
+    # BigDecimal preco;
+    + getters()
+    + setters()
+    + String toString()
+}
+
+class IphoneXSMax {}
+
+class Iphone11Pro {}
+
+class IphoneX {}
+
+class MotorolaEdge50Pro {}
+
+class MotorolaRazr40 {}
+
+class SamsungGalaxyS24Ultra {}
+
+class SamsungGalaxyA55 {}
+
+Cliente .[#blue].> CelularFatory :use
+Cliente .[#blue].> Celular :use
+
+class IphoneFactory implements CelularFatory
+class MotorolaFactory implements CelularFatory
+class SamsungFactory implements CelularFatory
+
+class IphoneXSMax extends Celular
+class Iphone11Pro extends Celular
+class IphoneX extends Celular
+
+
+class MotorolaEdge50Pro extends Celular
+class MotorolaRazr40 extends Celular
+
+
+class SamsungGalaxyS24Ultra extends Celular
+class SamsungGalaxyA55 extends Celular
+
+Cliente .[#blue].> IphoneFactory :use
+Cliente .[#blue].> MotorolaFactory :use
+Cliente .[#blue].> SamsungFactory :use
+
+IphoneFactory .[#blue].> IphoneXSMax :use
+IphoneFactory .[#blue].> Iphone11Pro :use
+IphoneFactory .[#blue].> IphoneX :use
+
+MotorolaFactory .[#blue].> MotorolaEdge50Pro :use
+MotorolaFactory .[#blue].> MotorolaRazr40 :use
+
+SamsungFactory .[#blue].> SamsungGalaxyS24Ultra :use
+SamsungFactory .[#blue].> SamsungGalaxyA55 :use
+@enduml
