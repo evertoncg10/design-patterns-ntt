@@ -1,0 +1,45 @@
+@startuml
+note as N1
+  <size:16><b>Factory Method (Simple Factory)
+
+end note
+
+object Cliente
+
+class CelularSimpleFactory {
+    +Celular criarCelular();
+}
+
+class Celular {
+    # long id;
+    # String nome;
+    # String sistemaOperacional;
+    # BigDecimal preco;
+    + getters()
+    + setters()
+    + String toString()
+}
+
+class IphoneXSMax {
+    +Celular criarCelular();
+}
+
+class MotorolaEdge50Pro {
+    +Celular criarCelular();
+}
+
+class SamsungGalaxyS24Ultra {
+    +Celular criarCelular();
+}
+
+Cliente .[#blue].> CelularSimpleFactory :use
+
+CelularSimpleFactory .[#blue].> IphoneXSMax :use
+CelularSimpleFactory .[#blue].> MotorolaEdge50Pro :use
+CelularSimpleFactory .[#blue].> IphoneXSMax :use
+CelularSimpleFactory .[#blue].> SamsungGalaxyS24Ultra :use
+
+class IphoneXSMax extends Celular
+class MotorolaEdge50Pro extends Celular
+class SamsungGalaxyS24Ultra extends Celular
+@enduml
