@@ -1,0 +1,49 @@
+@startuml
+note as N1
+  <size:16><b>Builder (After)
+
+end note
+
+object Cliente
+
+class Diretor {
+    +void constructSedanCar(IBuilder builder);
+    +void constructTruck(IBuilder builder);
+    +{static} Diretor diretor()
+}
+
+interface IBuilder {
+    void setTipoCarro(TipoCarroEnum tipoCarro);
+    void setNumeroLugares(int numeroLugares);
+    void setTransmissao(Transmissao transmissao);
+    void setMotor(Motor motor);
+}
+
+class CaminhaoBuilder {
+    -TipoCarroEnum tipoCarro;
+    -int numeroLugares;
+    -Motor motor;
+    -Transmissao transmissao;
+    +setters();
+    +Caminhao build()
+}
+
+class CarroBuilder {
+    -TipoCarroEnum tipoCarro;
+    -int numeroLugares;
+    -Motor motor;
+    -Transmissao transmissao;
+    +setters();
+    +Carro build();
+    +{static} CarroBuilder carroBuilder()
+}
+
+class CaminhaoBuilder implements IBuilder
+class CarroBuilder implements IBuilder
+
+Cliente .[#blue].> Diretor :use
+Cliente .[#blue].> CaminhaoBuilder :use
+Cliente .[#blue].> CarroBuilder :use
+
+Diretor o-- IBuilder : agregação
+@enduml

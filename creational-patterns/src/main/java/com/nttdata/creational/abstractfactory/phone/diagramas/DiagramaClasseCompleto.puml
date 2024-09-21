@@ -1,0 +1,121 @@
+@startuml
+note as N1
+  <size:16><b>Abstract Factory Completo
+
+end note
+'title Factory Method
+object Cliente
+
+interface CelularFatory {
+    +Celular criarCelular();
+}
+
+class IphoneXSMaxFactory {
+    +Celular criarCelular();
+}
+
+class MotorolaEdge50ProFactory {
+    +Celular criarCelular();
+}
+
+class SamsungGalaxyA32Factory {
+    +Celular criarCelular();
+}
+
+class Celular {
+    # long id;
+    # String nome;
+    # String sistemaOperacional;
+    # BigDecimal preco;
+    + getters();
+    + setters();
+}
+
+class IphoneXSMax {
+    +Celular criarCelular();
+}
+
+class MotorolaEdge50Pro {
+    +Celular criarCelular();
+}
+
+interface RegrasPaisesAbstractFactory {
+    CertificadoGarantia getCertificados();
+    Empacotamento getEmpacotamento();
+}
+
+class RegrasBrasilAbstractFactory {
+    +CertificadoGarantia getCertificados();
+    +Empacotamento getEmpacotamento();
+}
+
+class RegrasUSAAbstractFactory {
+    +CertificadoGarantia getCertificados();
+    +Empacotamento getEmpacotamento();
+}
+
+interface Empacotamento {
+    String empacotar();
+}
+
+class EmpacotamentoBrasil {
+    +String empacotar();
+}
+
+class EmpacotamentoUSA {
+    +String empacotar();
+}
+
+interface CertificadoGarantia {
+    String criarCertificadoGarantia();
+}
+
+class CertificadoGarantiaBrasil {
+    +String criarCertificadoGarantia();
+}
+
+class CertificadoGarantiaUSA {
+    +String criarCertificadoGarantia();
+}
+
+Cliente .[#blue].> CelularFatory :use
+
+class IphoneXSMaxFactory implements CelularFatory
+class MotorolaEdge50ProFactory implements CelularFatory
+class SamsungGalaxyA32Factory implements CelularFatory
+
+class IphoneXSMax extends Celular
+class MotorolaEdge50Pro extends Celular
+
+class RegrasBrasilAbstractFactory implements RegrasPaisesAbstractFactory
+class RegrasUSAAbstractFactory implements RegrasPaisesAbstractFactory
+
+class EmpacotamentoBrasil implements Empacotamento
+class EmpacotamentoUSA implements Empacotamento
+
+class CertificadoGarantiaBrasil implements CertificadoGarantia
+class CertificadoGarantiaUSA implements CertificadoGarantia
+
+
+Cliente .[#blue].> IphoneXSMaxFactory :use
+Cliente .[#blue].> MotorolaEdge50ProFactory :use
+Cliente .[#blue].> SamsungGalaxyA32Factory :use
+
+Cliente .[#blue].> RegrasPaisesAbstractFactory :use
+IphoneXSMaxFactory .[#blue].> RegrasPaisesAbstractFactory :use
+MotorolaEdge50ProFactory .[#blue].> RegrasPaisesAbstractFactory :use
+SamsungGalaxyA32Factory .[#blue].> RegrasPaisesAbstractFactory :use
+
+
+IphoneXSMaxFactory .[#blue].> IphoneXSMax
+MotorolaEdge50ProFactory .[#blue].> MotorolaEdge50Pro
+
+RegrasPaisesAbstractFactory .[#blue].> Empacotamento
+RegrasPaisesAbstractFactory .[#blue].> CertificadoGarantia
+
+RegrasBrasilAbstractFactory .[#blue].> EmpacotamentoBrasil
+RegrasBrasilAbstractFactory .[#blue].> CertificadoGarantiaBrasil
+
+RegrasUSAAbstractFactory .[#blue].> EmpacotamentoUSA
+RegrasUSAAbstractFactory .[#blue].> CertificadoGarantiaUSA
+@enduml

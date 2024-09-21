@@ -1,0 +1,64 @@
+@startuml
+note as N1
+  <size:16><b>Abstract Factory Detalhado
+
+end note
+'title Factory Method
+
+interface RegrasPaisesAbstractFactory {
+    CertificadoGarantia getCertificados();
+    Empacotamento getEmpacotamento();
+}
+
+class RegrasBrasilAbstractFactory {
+    +CertificadoGarantia getCertificados();
+    +Empacotamento getEmpacotamento();
+}
+
+class RegrasUSAAbstractFactory {
+    +CertificadoGarantia getCertificados();
+    +Empacotamento getEmpacotamento();
+}
+
+interface Empacotamento {
+    String empacotar();
+}
+
+class EmpacotamentoBrasil {
+    +String empacotar();
+}
+
+class EmpacotamentoUSA {
+    +String empacotar();
+}
+
+interface CertificadoGarantia {
+    String criarCertificadoGarantia();
+}
+
+class CertificadoGarantiaBrasil {
+    +String criarCertificadoGarantia();
+}
+
+class CertificadoGarantiaUSA {
+    +String criarCertificadoGarantia();
+}
+
+class RegrasBrasilAbstractFactory implements RegrasPaisesAbstractFactory
+class RegrasUSAAbstractFactory implements RegrasPaisesAbstractFactory
+
+class EmpacotamentoBrasil implements Empacotamento
+class EmpacotamentoUSA implements Empacotamento
+
+class CertificadoGarantiaBrasil implements CertificadoGarantia
+class CertificadoGarantiaUSA implements CertificadoGarantia
+
+RegrasPaisesAbstractFactory .[#blue].> Empacotamento
+RegrasPaisesAbstractFactory .[#blue].> CertificadoGarantia
+
+RegrasBrasilAbstractFactory .[#blue].> EmpacotamentoBrasil
+RegrasBrasilAbstractFactory .[#blue].> CertificadoGarantiaBrasil
+
+RegrasUSAAbstractFactory .[#blue].> EmpacotamentoUSA
+RegrasUSAAbstractFactory .[#blue].> CertificadoGarantiaUSA
+@enduml

@@ -1,0 +1,42 @@
+@startuml
+note as N1
+  <size:16><b>Builder (After 1)
+
+end note
+
+object main
+
+class Cliente {
+    -String cpf;
+    -String nomeCompleto;
+    -String nomeSocial;
+    -String dataNascimento;
+    -String email;
+    #Cliente();
+    +setters();
+    +getters();
+    +toString();
+}
+
+class ClienteBuilder {
+    -Cliente cliente;
+    -String cpf;
+    -String nomeCompleto;
+    -String nomeSocial;
+    -String dataNascimento;
+    -String email;
+    -ClienteBuilder();
+    +{static}ClienteBuilder builder();
+    +ClienteBuilder cpf(String cpf);
+    +ClienteBuilder nomeCompleto(String nomeCompleto);
+    +ClienteBuilder nomeSocial(String nomeSocial);
+    +ClienteBuilder dataNascimento(String dataNascimento);
+    +public ClienteBuilder email(String email);
+    +public Cliente build();
+}
+
+ClienteBuilder "1"*--"1" Cliente
+
+main .[#blue].> Cliente :use
+
+@enduml

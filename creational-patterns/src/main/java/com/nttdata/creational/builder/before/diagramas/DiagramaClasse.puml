@@ -1,0 +1,24 @@
+@startuml
+note as N1
+  <size:16><b>Builder (Before)
+
+end note
+
+object main
+
+class Cliente {
+    -String cpf;
+    -String NomeCompleto;
+    -String NomeSocial;
+    -String DataNascimento;
+    -String email;
+    +Cliente(String cpf);
+    +Cliente(String cpf, String nomeCompleto);
+    +Cliente(String cpf, String nomeCompleto, String nomeSocial);
+    +Cliente(String cpf, String nomeCompleto, String nomeSocial, String dataNascimento);
+    +Cliente(String cpf, String nomeCompleto, String nomeSocial, String dataNascimento, String email);
+    +String toString();
+}
+
+main .[#blue].> Cliente :use
+@enduml
