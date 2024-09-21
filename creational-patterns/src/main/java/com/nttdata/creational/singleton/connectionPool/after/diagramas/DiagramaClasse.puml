@@ -1,0 +1,33 @@
+@startuml
+note as N1
+  <size:16><b>Abstract Factory
+
+end note
+'title Factory Method
+
+object Cliente
+
+class Connection {
+    +Connection();
+    +Object query(String sql);
+    ~boolean isInUse();
+    ~void setInUse;
+}
+
+class ConnectionPool {
+    -final static int POOL_SIZE;
+    -List<Connection> connectionsPool;
+    -static ConnectionPool singleton;
+    +{static} ConnectionPool getInstance();
+    +ConnectionPool();
+    +Connection getConnection();
+    +void leaveConnection(Connection conn);
+}
+
+Cliente .[#blue].> Connection :use
+Cliente .[#blue].> ConnectionPool :use
+
+ConnectionPool o--- ConnectionPool
+
+ConnectionPool "1" o-- "*" Connection
+@enduml
